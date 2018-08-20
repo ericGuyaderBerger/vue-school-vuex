@@ -12,20 +12,23 @@
 </template>
 <script>
 import Shop from '@/api/shop'
+import store from '@/store'
 import ProductListItem from './ProductListItem'
+
 export default {
   name: 'ProductList',
   components: {
     ProductListItem
   },
-  data () {
-    return {
-      products: null
+  computed: {
+    products () {
+      return store.getters.availableProducts
     }
   },
   created () {
-    // this.products = null
-    Shop.getProducts(products => { this.products = products })
+    Shop.getProducts(products => {
+      store.commit('setProducts', products)
+    })
   }
 }
 </script>
