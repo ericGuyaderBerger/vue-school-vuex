@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Products</h1>
+    <img v-if="loading" src="@/assets/logo.png" />
     <ul>
       <product-list-item
         v-for="product in products"
@@ -11,7 +12,6 @@
   </div>
 </template>
 <script>
-import Shop from '@/api/shop'
 import store from '@/store'
 import ProductListItem from './ProductListItem'
 
@@ -20,15 +20,20 @@ export default {
   components: {
     ProductListItem
   },
+  data () {
+    return {
+      loading: false
+    }
+  },
   computed: {
     products () {
       return store.getters.availableProducts
     }
   },
   created () {
-    Shop.getProducts(products => {
-      store.commit('setProducts', products)
-    })
+    this.loading = true
+    store.dispatch('fetchProducts')
+      .then(() => { this.loading = false })
   }
 }
 </script>
