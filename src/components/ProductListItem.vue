@@ -1,6 +1,8 @@
 <template>
   <li>
     {{ product.title }}, {{ product.price }} - Inventory: {{ product.inventory }}
+    <button @click="addProductToCart(product)">Add to cart</button>
+
   </li>
 </template>
 <script>
@@ -10,6 +12,11 @@ export default {
     product: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    addProductToCart (product) {
+      this.$store.dispatch('addProductToCart', product)
     }
   }
 }
