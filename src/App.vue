@@ -3,6 +3,8 @@
     <product-list />
     <hr>
     <shopping-cart />
+    <button @click="$store.dispatch('checkout')">Checkout</button>
+    <p>{{ $store.state.checkoutStatus}}</p>
   </div>
 </template>
 
