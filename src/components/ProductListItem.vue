@@ -1,7 +1,11 @@
 <template>
   <li>
     {{ product.title }}, {{ product.price }} - Inventory: {{ product.inventory }}
-    <button @click="addProductToCart(product)">Add to cart</button>
+    <button
+      :disabled="!$store.getters.isProductAvailable(product)"
+      @click="addProductToCart(product)"
+    >
+    Add to cart</button>
 
   </li>
 </template>
