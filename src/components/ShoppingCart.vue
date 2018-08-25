@@ -18,15 +18,15 @@ export default {
   name: 'ShoppingCart',
   computed: {
     ...mapGetters({
-      total: 'cartTotal',
-      products: 'cartProducts'
+      total: 'cart/cartTotal',
+      products: 'cart/cartProducts'
     }),
     ...mapState(
       {'checkoutStatus': state => state.cart.checkoutStatus}
     )
   },
   methods: {
-    ...mapActions(['checkout'])
+    ...mapActions({checkout: 'cart/checkout'})
   }
 }
 </script>

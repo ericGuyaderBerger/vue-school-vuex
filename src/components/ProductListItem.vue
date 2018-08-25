@@ -21,10 +21,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isProductAvailable'])
+    ...mapGetters({isProductAvailable: 'products/isProductAvailable'})
   },
   methods: {
-    ...mapActions(['addProductToCart'])
+    ...mapActions({addProductToCart: 'cart/addProductToCart'})
   }
 }
 </script>
