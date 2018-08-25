@@ -2,7 +2,7 @@
   <li>
     {{ product.title }}, {{ product.price }} - Inventory: {{ product.inventory }}
     <button
-      :disabled="!$store.getters.isProductAvailable(product)"
+      :disabled="!isProductAvailable(product)"
       @click="addProductToCart(product)"
     >
     Add to cart</button>
@@ -10,6 +10,8 @@
   </li>
 </template>
 <script>
+import {mapGetters, mapActions} from 'vuex'
+
 export default {
   name: 'ProductListItem',
   props: {
@@ -18,10 +20,11 @@ export default {
       required: true
     }
   },
+  computed: {
+    ...mapGetters(['isProductAvailable'])
+  },
   methods: {
-    addProductToCart (product) {
-      this.$store.dispatch('addProductToCart', product)
-    }
+    ...mapActions(['addProductToCart'])
   }
 }
 </script>

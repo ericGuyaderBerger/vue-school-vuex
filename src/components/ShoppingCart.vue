@@ -8,14 +8,25 @@
       </li>
     </ul>
     <p>Total: {{ total }}</p>
+    <button @click="checkout">Checkout</button>
+    <p>{{ checkoutStatus }}</p>
   </div>
 </template>
 <script>
+import {mapState, mapGetters, mapActions} from 'vuex'
 export default {
   name: 'ShoppingCart',
   computed: {
-    total () { return this.$store.getters.cartTotal },
-    products () { return this.$store.getters.cartProducts }
+    ...mapGetters({
+      total: 'cartTotal',
+      products: 'cartProducts'
+    }),
+    ...mapState(
+      ['checkoutStatus']
+    )
+  },
+  methods: {
+    ...mapActions(['checkout'])
   }
 }
 </script>

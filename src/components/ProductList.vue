@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-
+import {mapGetters, mapActions} from 'vuex'
 import ProductListItem from './ProductListItem'
 
 export default {
@@ -26,13 +26,14 @@ export default {
     }
   },
   computed: {
-    products () {
-      return this.$store.getters.availableProducts
-    }
+    ...mapGetters({products: 'availableProducts'})
+  },
+  methods: {
+    ...mapActions(['fetchProducts'])
   },
   created () {
     this.loading = true
-    this.$store.dispatch('fetchProducts')
+    this.fetchProducts()
       .then(() => { this.loading = false })
   }
 }
