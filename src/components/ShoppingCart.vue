@@ -22,7 +22,7 @@ export default {
       products: 'cartProducts'
     }),
     ...mapState(
-      ['checkoutStatus']
+      {'checkoutStatus': state => state.cart.checkoutStatus}
     )
   },
   methods: {
