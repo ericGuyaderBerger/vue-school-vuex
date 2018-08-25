@@ -26,10 +26,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({products: 'products/availableProducts'})
+    ...mapGetters('products', {products: 'availableProducts'})
   },
   methods: {
-    ...mapActions({fetchProducts: 'products/fetchProducts'})
+    ...mapActions('products', {fetchProducts: 'fetchProducts'})
   },
   created () {
     this.loading = true
